@@ -55,7 +55,7 @@ DevHub is designed to help developers keep their technical knowledge organized w
 ![Features](screenshots/features-section.png)
 
 ### Dashboard
-![Dashboard](screenshots/dashboard-page.png)
+![Dashboard](screenshots/Dashboard-page.png)
 
 ### Explore Developers
 
