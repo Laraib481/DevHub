@@ -1,16 +1,170 @@
-# React + Vite
+# DevHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack developer collaboration platform where developers can organize notes, save code snippets, manage learning resources, and build a public technical profile.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+DevHub is designed to help developers keep their technical knowledge organized while also showcasing their public work. It combines personal productivity tools with community discovery features in a single platform.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Authentication
+- User registration and login
+- Secure account management
+
+### Notes Management
+- Create, edit, and delete notes
+- Public and private visibility options
+- Search and filter notes
+- Tag-based organization
+
+### Code Snippets
+- Store reusable code snippets
+- Categorize snippets by technology
+- Manage personal code library
+
+### Resources
+- Save useful learning resources and references
+- Add descriptions, categories, and tags
+- Public and private resource management
+
+### Developer Profiles
+- Custom developer profile
+- Bio and skills showcase
+- Public portfolio-style presence
+
+### Explore Developers
+- Discover other developers
+- View public profiles
+- Browse public notes, snippets, and resources
+
+---
+
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home-page.png)
+
+### Features Section
+
+![Features](screenshots/features-section.png)
+
+### Explore Developers
+
+![Explore Developers](screenshots/explore-page.png)
+
+### Notes Dashboard
+
+![Notes Dashboard](screenshots/notes-page.png)
+
+---
+
+## Tech Stack
+
+### Frontend
+- React.js
+- React Router
+- CSS3
+- React Icons
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB
+- Mongoose
+
+---
+
+## Project Structure
+
+```text
+DevHub
+│
+├── frontend
+│   ├── components
+│   ├── pages
+│   ├── layouts
+│   └── assets
+│
+├── backend
+│   ├── models
+│   ├── routes
+│   ├── middleware
+│   └── controllers
+│
+└── README.md
+```
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/Laraib481/DevHub.git
+```
+
+### Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### Install Backend Dependencies
+
+```bash
+npm install
+```
+
+### Run Frontend
+
+```bash
+npm run dev
+```
+
+### Run Backend
+
+```bash
+npm start
+```
+
+---
+
+## Future Improvements
+
+- Real-time developer messaging
+- Notifications system
+- Bookmarking functionality
+- Advanced search and filtering
+- Profile customization
+- Activity feed
+- Deployment with cloud hosting
+
+---
+
+## Author
+
+**Laraib**
+
+Software Engineering Student
+
+GitHub:
+https://github.com/Laraib481
+
+---
+
+## Project Status
+
+Currently under active development with continuous improvements to UI, user experience, and platform features.
+
+
+
+
