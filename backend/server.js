@@ -36,6 +36,3 @@ mongoose
     console.log("MongoDB connection error:", error.message);
   });
 
- app.get("/", (req, res) => {
-  res.send("🚀 DevHub backend is running successfully!");
-});
