@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function EditResource() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ function EditResource() {
   useEffect(() => {
     const fetchResource = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/resources/${id}`);
+        const response = await fetch(`${API}/api/resources/${id}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -92,7 +93,7 @@ function EditResource() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/resources/${id}`, {
+      const response = await fetch(`${API}/api/resources/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

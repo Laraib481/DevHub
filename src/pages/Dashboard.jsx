@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function Dashboard() {
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
@@ -19,9 +20,9 @@ function Dashboard() {
 
       try {
         const [snippetRes, noteRes, resourceRes] = await Promise.all([
-          fetch(`http://localhost:5000/api/snippets/user/${currentUser.id}`),
-          fetch(`http://localhost:5000/api/notes/user/${currentUser.id}`),
-          fetch(`http://localhost:5000/api/resources/user/${currentUser.id}`),
+          fetch(`${API}/api/snippets/user/${currentUser.id}`),
+          fetch(`${API}/api/notes/user/${currentUser.id}`),
+          fetch(`${API}/api/resources/user/${currentUser.id}`),
         ]);
 
         const snippetData = await snippetRes.json();

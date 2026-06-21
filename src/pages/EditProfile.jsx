@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ function EditProfile() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/profile/${savedUser.id}`,
+        `${API}/api/auth/profile/${savedUser.id}`,
         {
           method: "PUT",
           headers: {

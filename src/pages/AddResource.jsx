@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
-
+import API from "../api";
 function AddResource() {
   const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ function AddResource() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/resources", {
+      const response = await fetch("${API}/api/resources", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

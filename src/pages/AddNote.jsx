@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function AddNote() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function AddNote() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/notes", {
+      const response = await fetch("${API}/api/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

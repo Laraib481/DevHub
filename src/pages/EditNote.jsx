@@ -19,7 +19,7 @@ function EditNote() {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/notes/${id}`);
+        const response = await fetch(`${API}/api/notes/${id}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -86,7 +86,7 @@ function EditNote() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/notes/${id}`, {
+      const response = await fetch(`${API}/api/notes/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

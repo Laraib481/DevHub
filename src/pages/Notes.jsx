@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import NoteCard from "../components/NoteCard";
+import API from "../api";
 
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -18,8 +19,7 @@ function Notes() {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/notes/user/${savedUser.id}`
+      const response =  await fetch (`${API}/api/notes/user/${savedUser.id}`
       );
 
       const data = await response.json();

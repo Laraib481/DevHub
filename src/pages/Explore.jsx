@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function Explore() {
   const [developers, setDevelopers] = useState([]);
@@ -10,7 +11,8 @@ function Explore() {
   useEffect(() => {
     const fetchUsersWithCounts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/auth/users");
+        
+         const response = await fetch(`${API}/api/auth/users`);
         const users = await response.json();
 
         if (!response.ok) {
@@ -24,9 +26,9 @@ function Explore() {
             try {
               const [snippetResponse, noteResponse, resourceResponse] =
                 await Promise.all([
-                  fetch(`http://localhost:5000/api/snippets/public/${user._id}`),
-                  fetch(`http://localhost:5000/api/notes/public/${user._id}`),
-                  fetch(`http://localhost:5000/api/resources/public/${user._id}`),
+                  fetch(`${API}/api/snippets/public/${user._id}`),
+                  fetch(`${API}/api/notes/public/${user._id}`),
+                  fetch(`${API}/api/resources/public/${user._id}`),
                 ]);
 
               const snippets = await snippetResponse.json();

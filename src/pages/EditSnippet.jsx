@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function EditSnippet() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ function EditSnippet() {
   useEffect(() => {
     const fetchSnippet = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/snippets/${id}`);
+        const response = await fetch(`${API}/api/snippets/${id}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -92,7 +93,7 @@ function EditSnippet() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/snippets/${id}`, {
+      const response = await fetch(`${API}/api/snippets/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

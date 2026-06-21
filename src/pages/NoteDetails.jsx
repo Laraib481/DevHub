@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import RichNoteContent from "../components/RichNoteContent";
+import API from "../api";
 
 function NoteDetails() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ function NoteDetails() {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/notes/${id}`);
+        const response = await fetch(`${API}/api/notes/${id}`);
         const data = await response.json();
 
         if (!response.ok) {

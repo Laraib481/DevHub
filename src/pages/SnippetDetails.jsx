@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import API from "../api";
 
 function SnippetDetails() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ function SnippetDetails() {
   useEffect(() => {
     const fetchSnippet = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/snippets/${id}`);
+        const response = await fetch(`${API}/api/snippets/${id}`);
         const data = await response.json();
 
         if (!response.ok) {
