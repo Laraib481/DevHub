@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import API from "../api";
 
 function Signup() {
   const navigate = useNavigate();
@@ -79,7 +80,7 @@ function Signup() {
     setLoading(true);
 
     try {
-      const response = await fetch("${API}/api/auth/signup", {
+      const response = await fetch(`${API}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

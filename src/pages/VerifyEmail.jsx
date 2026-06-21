@@ -31,7 +31,7 @@ function VerifyEmail() {
     setLoading(true);
 
     try {
-      const response = await fetch("${API}/api/auth/verify-email",
+      const response = await fetch(`${API}/api/auth/verify-email`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ function VerifyEmail() {
 
     try {
       const response = await fetch(
-        "${API}/api/auth/resend-otp",
+        `${API}/api/auth/resend-otp`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
