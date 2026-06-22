@@ -15,7 +15,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 } 
 
-/* Media never overflows its container and keeps its aspect ratio. */ 
 img,
 video {
   max-width: 100%;
