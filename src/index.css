@@ -10,7 +10,6 @@ body {
   background: #0f172a;
   color: white;
   padding: 40px;
-  /* Global guard against accidental horizontal scrolling on any page. */
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -191,7 +190,6 @@ h4 {
   font-weight: 600;
 }
 
-/* Status banner: loading / success / error / info messages */
 .auth-message {
   border-radius: 12px;
   padding: 12px 14px;
@@ -254,8 +252,6 @@ h4 {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
-
 /* HERO */
 * {
   margin: 0;
