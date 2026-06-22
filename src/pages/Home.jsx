@@ -258,7 +258,6 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-
                   <div className="dash-card">
                     <div className="dash-card-title">Filter by tag</div>
                     <div className="tags-cloud">
