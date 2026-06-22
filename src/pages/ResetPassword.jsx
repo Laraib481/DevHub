@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import API from "../api";
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ function ResetPassword() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/reset-password",
+        `${API}/api/auth/reset-password`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -114,7 +115,7 @@ function ResetPassword() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/forgot-password",
+        `${API}/api/auth/forgot-password`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

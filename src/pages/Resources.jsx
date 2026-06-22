@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import NoteCard from "../components/NoteCard";
-
+import API from "../api";
 function Resources() {
   const [resources, setResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,7 +19,7 @@ function Resources() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/resources/user/${savedUser.id}`
+        `${API}/api/resources/user/${savedUser.id}`
       );
 
       const data = await response.json();
@@ -45,7 +45,7 @@ function Resources() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/resources/${id}`, {
+      const response = await fetch(`${API}/api/resources/${id}`, {
         method: "DELETE",
       });
 

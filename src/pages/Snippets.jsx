@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import CodeBlock from "../components/CodeBlock";
+import API from "../api";
 
 function Snippets() {
   const [snippets, setSnippets] = useState([]);
@@ -19,7 +20,7 @@ function Snippets() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/snippets/user/${savedUser.id}`
+        `${API}/api/snippets/user/${savedUser.id}`
       );
 
       const data = await response.json();
@@ -45,7 +46,7 @@ function Snippets() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/snippets/${id}`, {
+      const response = await fetch(`${API}/api/snippets/${id}`, {
         method: "DELETE",
       });
 

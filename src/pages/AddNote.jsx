@@ -66,7 +66,7 @@ function AddNote() {
     }
 
     try {
-      const response = await fetch("${API}/api/notes", {
+      const response = await fetch(`${API}/api/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

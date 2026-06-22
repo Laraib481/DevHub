@@ -70,7 +70,7 @@ function AddResource() {
     }
 
     try {
-      const response = await fetch("${API}/api/resources", {
+      const response = await fetch(`${API}/api/resources`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

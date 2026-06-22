@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import NoteCard from "../components/NoteCard";
 import ReaderModal from "../components/ReaderModal";
-
+import API from "../api";
 // Adapt a snippet into the shape NoteCard/ReaderModal consume, so snippets
 // render through the exact same preview-card + reader-modal system as notes.
 // The code becomes a fenced block, which RichNoteContent highlights on expand.
@@ -47,9 +47,9 @@ function Profile() {
 
       try {
         const [snippetRes, noteRes, resourceRes] = await Promise.all([
-          fetch(`http://localhost:5000/api/snippets/user/${currentUser.id}`),
-          fetch(`http://localhost:5000/api/notes/user/${currentUser.id}`),
-          fetch(`http://localhost:5000/api/resources/user/${currentUser.id}`),
+          fetch(`${API}/api/snippets/user/${currentUser.id}`),
+          fetch(`${API}/api/notes/user/${currentUser.id}`),
+          fetch(`${API}/api/resources/user/${currentUser.id}`),
         ]);
 
         const snippetData = await snippetRes.json();

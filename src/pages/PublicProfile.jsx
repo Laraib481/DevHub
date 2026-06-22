@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import NoteCard from "../components/NoteCard";
 import ReaderModal from "../components/ReaderModal";
+import API from "../api";
 
 // Adapt a snippet into the shape NoteCard/ReaderModal consume, so snippets
 // render through the exact same preview-card + reader-modal system as notes.
@@ -34,7 +35,7 @@ function PublicProfile() {
   useEffect(() => {
     const fetchProfileAndContent = async () => {
       try {
-        const userResponse = await fetch("http://localhost:5000/api/auth/users");
+        const userResponse = await fetch(`${API}/api/auth/users`);
         const users = await userResponse.json();
 
         if (!userResponse.ok) {
@@ -54,9 +55,9 @@ function PublicProfile() {
 
         const [snippetResponse, noteResponse, resourceResponse] =
           await Promise.all([
-            fetch(`http://localhost:5000/api/snippets/public/${id}`),
-            fetch(`http://localhost:5000/api/notes/public/${id}`),
-            fetch(`http://localhost:5000/api/resources/public/${id}`),
+            fetch(`${API}/api/snippets/public/${id}`),
+            fetch(`${API}/api/notes/public/${id}`),
+            fetch(`${API}/api/resources/public/${id}`),
           ]);
 
         const snippetData = await snippetResponse.json();
