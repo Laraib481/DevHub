@@ -177,7 +177,6 @@ h4 {
   font-weight: 600;
 }
 
-/* Inline link above the submit button (e.g. Forgot Password) */
 .auth-inline-link {
   text-align: right;
   margin-top: -6px;
