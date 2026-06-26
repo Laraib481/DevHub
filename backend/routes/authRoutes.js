@@ -100,7 +100,7 @@ router.post("/signup", async (req, res) => {
 
     // Email the OTP. If sending fails, remove the half-created record so the
     // user can retry cleanly, and report the failure.
-   /* try {
+    try {
       await sendOtpEmail({
         to: userToVerify.email,
         subject: "Verify your DevHub account",
@@ -115,7 +115,7 @@ router.post("/signup", async (req, res) => {
       return res.status(502).json({
         message: "Could not send verification email. Please try again later.",
       });
-    }*/
+    }
 
     return res.status(201).json({
       message:
