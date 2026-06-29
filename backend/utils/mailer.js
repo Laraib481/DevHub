@@ -37,12 +37,26 @@ async function sendOtpEmail({ to, subject, heading, intro, otp }) {
     return;
   }
 
+  // await transporter.sendMail({
+  //   from: process.env.SENDER_EMAIL || process.env.SMTP_USER,
+  //   to,
+  //   subject,
+  //   html,
+  // });
+
+  try {
   await transporter.sendMail({
     from: process.env.SENDER_EMAIL || process.env.SMTP_USER,
     to,
     subject,
     html,
   });
+
+  console.log("Email sent successfully");
+} catch (err) {
+  console.error("SMTP ERROR:", err);
+  throw err;
+}
 }
 
 // Minimal branded HTML matching the DevHub dark/blue theme.
@@ -61,12 +75,6 @@ function buildOtpHtml({ heading, intro, otp }) {
   </div>`;
 }
 
-console.log({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  user: process.env.SMTP_USER,
-  passExists: !!process.env.SMTP_PASS,
-});
 
 module.exports = {
   sendOtpEmail,
