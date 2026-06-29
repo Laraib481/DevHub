@@ -61,6 +61,13 @@ function buildOtpHtml({ heading, intro, otp }) {
   </div>`;
 }
 
+console.log({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  user: process.env.SMTP_USER,
+  passExists: !!process.env.SMTP_PASS,
+});
+
 module.exports = {
   sendOtpEmail,
   smtpConfigured,
