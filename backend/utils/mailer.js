@@ -1,10 +1,4 @@
 const nodemailer = require("nodemailer");
-
-// Build the SMTP transporter from environment variables.
-// Works with any SMTP provider (Gmail App Password, Brevo, Mailtrap, etc.).
-// If SMTP credentials are not configured we fall back to a "dev" mode that
-// simply logs the email to the server console so the flow stays testable
-// locally without real credentials.
 const smtpConfigured = Boolean(
   process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS
 );
@@ -12,18 +6,17 @@ const smtpConfigured = Boolean(
 let transporter = null;
 
 if (smtpConfigured) {
-  transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT) || 587,
-    // `secure: true` for port 465, otherwise STARTTLS on 587.
-    secure: Number(process.env.SMTP_PORT) === 465,
-    secure: true,
-    family: 4,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT) || 587,
+  secure: Number(process.env.SMTP_PORT) === 465,
+  family: 4,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
 }
 
 // Send an OTP email. Returns nothing on success, throws on a real send failure.
@@ -31,20 +24,12 @@ async function sendOtpEmail({ to, subject, heading, intro, otp }) {
   const html = buildOtpHtml({ heading, intro, otp });
 
   if (!transporter) {
-    // Dev fallback: no SMTP configured. Log the code so registration/reset
-    // can still be tested locally. This never goes out in an API response.
+
     console.log(
       `\n[DEV EMAIL] No SMTP configured. OTP for ${to} (${subject}): ${otp}\n`
     );
     return;
   }
-
-  // await transporter.sendMail({
-  //   from: process.env.SENDER_EMAIL || process.env.SMTP_USER,
-  //   to,
-  //   subject,
-  //   html,
-  // });
 
   try {
   await transporter.sendMail({
