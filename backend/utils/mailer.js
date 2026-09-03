@@ -1,30 +1,31 @@
 const nodemailer = require("nodemailer");
+
 const smtpConfigured = Boolean(
-  process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS
+  process.env.SMTP_HOST &&
+  process.env.SMTP_USER &&
+  process.env.SMTP_PASS
 );
 
 let transporter = null;
 
 if (smtpConfigured) {
-transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: Number(process.env.SMTP_PORT) === 465,
-  family: 4,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
-
+  transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    family: 4,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
 }
 
-// Send an OTP email. Returns nothing on success, throws on a real send failure.
+// Send an OTP email
 async function sendOtpEmail({ to, subject, heading, intro, otp }) {
   const html = buildOtpHtml({ heading, intro, otp });
 
   if (!transporter) {
-
     console.log(
       `\n[DEV EMAIL] No SMTP configured. OTP for ${to} (${subject}): ${otp}\n`
     );
@@ -32,22 +33,21 @@ async function sendOtpEmail({ to, subject, heading, intro, otp }) {
   }
 
   try {
-  await transporter.sendMail({
-    from: process.env.SENDER_EMAIL || process.env.SMTP_USER,
-    to,
-    subject,
-    html,
-  });
+    await transporter.sendMail({
+      from: process.env.SENDER_EMAIL || process.env.SMTP_USER,
+      to,
+      subject,
+      html,
+    });
 
-  console.log("Email sent successfully");
-} catch (err) {
-  console.error("SMTP ERROR:", err);
-  throw err;
+    console.log("Email sent successfully");
+  } catch (err) {
+    console.error("SMTP ERROR:", err);
+    throw err;
+  }
 }
-}
 
-// Minimal branded HTML matching the DevHub dark/blue theme.
-
+// DevHub OTP email template
 function buildOtpHtml({ heading, intro, otp }) {
   return `
   <div style="
@@ -56,7 +56,7 @@ function buildOtpHtml({ heading, intro, otp }) {
     background: #f8fafc;
     font-family: Arial, Helvetica, sans-serif;
   ">
-    
+
     <div style="
       max-width: 520px;
       margin: 0 auto;
@@ -92,7 +92,6 @@ function buildOtpHtml({ heading, intro, otp }) {
           Developer Community Platform
         </div>
 
-        <!-- Personal signature -->
         <div style="
           font-family: Georgia, 'Times New Roman', serif;
           font-size: 23px;
@@ -104,7 +103,6 @@ function buildOtpHtml({ heading, intro, otp }) {
         </div>
 
       </div>
-
 
       <!-- Main Content -->
       <div style="
@@ -129,7 +127,6 @@ function buildOtpHtml({ heading, intro, otp }) {
         ">
           ${intro}
         </p>
-
 
         <!-- OTP Box -->
         <div style="
@@ -164,7 +161,6 @@ function buildOtpHtml({ heading, intro, otp }) {
 
         </div>
 
-
         <!-- Expiry Notice -->
         <div style="
           background: #f8fafc;
@@ -179,11 +175,11 @@ function buildOtpHtml({ heading, intro, otp }) {
             line-height: 1.6;
             text-align: center;
           ">
-            This verification code will expire in <strong style="color: #334155;">10 minutes</strong>.
+            This verification code will expire in
+            <strong style="color: #334155;">10 minutes</strong>.
             If you did not request this code, you can safely ignore this email.
           </p>
         </div>
-
 
         <!-- Divider -->
         <div style="
@@ -191,7 +187,6 @@ function buildOtpHtml({ heading, intro, otp }) {
           background: #e2e8f0;
           margin: 0 0 24px;
         "></div>
-
 
         <!-- Help Section -->
         <div style="text-align: center;">
@@ -237,7 +232,6 @@ function buildOtpHtml({ heading, intro, otp }) {
 
       </div>
 
-
       <!-- Footer -->
       <div style="
         padding: 18px 25px;
@@ -264,10 +258,7 @@ function buildOtpHtml({ heading, intro, otp }) {
   `;
 }
 
-
 module.exports = {
   sendOtpEmail,
   smtpConfigured,
 };
-
-
