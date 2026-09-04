@@ -21,6 +21,17 @@
 //   });
 // }
 
+// // Temporary SMTP connection test
+// if (transporter) {
+//   transporter.verify((error, success) => {
+//     if (error) {
+//       console.error("SMTP VERIFY ERROR:", error);
+//     } else {
+//       console.log("SMTP SERVER IS READY");
+//     }
+//   });
+// }
+
 // // Send an OTP email
 // async function sendOtpEmail({ to, subject, heading, intro, otp }) {
 //   const html = buildOtpHtml({ heading, intro, otp });
@@ -67,7 +78,6 @@
 //       box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
 //     ">
 
-//       <!-- Header -->
 //       <div style="
 //         padding: 30px 34px 24px;
 //         background: #0f172a;
@@ -104,7 +114,6 @@
 
 //       </div>
 
-//       <!-- Main Content -->
 //       <div style="
 //         padding: 36px 34px 32px;
 //       ">
@@ -128,7 +137,6 @@
 //           ${intro}
 //         </p>
 
-//         <!-- OTP Box -->
 //         <div style="
 //           background: #eff6ff;
 //           border: 1px solid #bfdbfe;
@@ -161,7 +169,6 @@
 
 //         </div>
 
-//         <!-- Expiry Notice -->
 //         <div style="
 //           background: #f8fafc;
 //           border-radius: 12px;
@@ -181,14 +188,12 @@
 //           </p>
 //         </div>
 
-//         <!-- Divider -->
 //         <div style="
 //           height: 1px;
 //           background: #e2e8f0;
 //           margin: 0 0 24px;
 //         "></div>
 
-//         <!-- Help Section -->
 //         <div style="text-align: center;">
 
 //           <p style="
@@ -232,7 +237,6 @@
 
 //       </div>
 
-//       <!-- Footer -->
 //       <div style="
 //         padding: 18px 25px;
 //         background: #f8fafc;
@@ -286,17 +290,6 @@ if (smtpConfigured) {
   });
 }
 
-// Temporary SMTP connection test
-if (transporter) {
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error("SMTP VERIFY ERROR:", error);
-    } else {
-      console.log("SMTP SERVER IS READY");
-    }
-  });
-}
-
 // Send an OTP email
 async function sendOtpEmail({ to, subject, heading, intro, otp }) {
   const html = buildOtpHtml({ heading, intro, otp });
@@ -309,11 +302,19 @@ async function sendOtpEmail({ to, subject, heading, intro, otp }) {
   }
 
   try {
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: process.env.SENDER_EMAIL || process.env.SMTP_USER,
       to,
       subject,
       html,
+    });
+
+    // Safe delivery diagnostics — no passwords/secrets logged
+    console.log("EMAIL RESULT:", {
+      messageId: info.messageId,
+      accepted: info.accepted,
+      rejected: info.rejected,
+      response: info.response,
     });
 
     console.log("Email sent successfully");
