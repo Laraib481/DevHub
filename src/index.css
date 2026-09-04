@@ -1670,26 +1670,6 @@ h4 {
   box-shadow: 0 0 15px rgba(37, 99, 235, 0.15);
 }
 
-
-/* .app-sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.app-sidebar-nav a {
-  padding: 14px 16px;
-  border-radius: 12px;
-  color: #cbd5e1;
-  transition: 0.3s ease;
-}
-
-.app-sidebar-nav a:hover {
-  background: rgba(56, 189, 248, 0.1);
-  color: #2563eb;
-} */
-
-
 .app-sidebar-logout {
   padding: 14px 16px;
   border-radius: 12px;
@@ -3217,8 +3197,3 @@ h4 {
     width: 100%;
   }
 }
-
-
-
-
-
